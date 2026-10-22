@@ -4,7 +4,7 @@
   margin-top: calc(var(--header-h) * -1);
   padding: var(--header-h) 0 clamp(64px, 7vw, 104px);
   background: var(--navy-900);
-  border-bottom-left-radius: clamp(80px, 10vw, 180px);
+  border-radius: 0 0 clamp(80px, 10vw, 180px) clamp(80px, 10vw, 180px);
   overflow: hidden;
   color: #fff;
   /* Prawie cały ekran – na dole zostaje pasek tła następnej sekcji, żeby było widać zaokrąglony róg.
