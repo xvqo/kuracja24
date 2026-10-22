@@ -1,0 +1,75 @@
+.section {
+  padding-top: var(--section-y-lg);
+  padding-bottom: var(--section-y);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(56px, 6vw, 88px);
+}
+
+.intro {
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.statement {
+  font: 500 clamp(30px, 3.4vw, 48px) / 1.16 var(--font-sans);
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.muted {
+  color: var(--text-3);
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: end;
+  gap: 24px;
+}
+
+.photo {
+  position: relative;
+  height: clamp(300px, 26vw, 380px);
+  border-radius: 0 96px 0 96px;
+  overflow: hidden;
+  background: var(--tint);
+}
+
+.photo[data-tall='true'] {
+  height: clamp(360px, 32vw, 460px);
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.value {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.valueName {
+  font: 600 20px/1.2 var(--font-sans);
+  letter-spacing: -0.015em;
+}
+
+.valueDescription {
+  font: 400 15px/1.55 var(--font-sans);
+  color: var(--text-2);
+  text-wrap: pretty;
+}

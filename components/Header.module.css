@@ -1,0 +1,222 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--h-bg);
+  box-shadow: var(--h-line);
+  transform: translate3d(0, 0, 0);
+  transition:
+    background 0.45s ease,
+    box-shadow 0.45s ease,
+    backdrop-filter 0.45s ease,
+    transform 0.5s var(--ease);
+}
+
+/* Motyw nad ciemnym hero */
+.header[data-theme='dark'] {
+  --h-bg: rgba(11, 22, 48, 0);
+  --h-glass: rgba(11, 22, 48, 0.62);
+  --h-line: inset 0 -1px 0 rgba(255, 255, 255, 0);
+  --h-glass-line: inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+  --h-logo: brightness(0) invert(1);
+  --h-nav: rgba(255, 255, 255, 0.86);
+  --h-ink: #fff;
+  --h-hover: var(--blue-200);
+  --h-underline: #fff;
+  --h-btn-bg: #fff;
+  --h-btn-fg: var(--navy-900);
+  --h-btn-hover: var(--blue-100);
+  --h-burger: rgba(255, 255, 255, 0.12);
+}
+
+/* Motyw nad resztą strony */
+.header[data-theme='light'] {
+  --h-bg: rgba(246, 248, 251, 0);
+  --h-glass: rgba(246, 248, 251, 0.8);
+  --h-line: inset 0 -1px 0 rgba(14, 26, 51, 0);
+  --h-glass-line: inset 0 -1px 0 rgba(14, 26, 51, 0.07);
+  --h-logo: none;
+  --h-nav: var(--ink-2);
+  --h-ink: var(--ink);
+  --h-hover: var(--blue-600);
+  --h-underline: var(--ink);
+  --h-btn-bg: var(--brand);
+  --h-btn-fg: #fff;
+  --h-btn-hover: var(--brand-hover);
+  --h-burger: var(--tint);
+}
+
+.header[data-glass='true'] {
+  background: var(--h-glass);
+  box-shadow: var(--h-glass-line);
+  backdrop-filter: blur(22px) saturate(170%);
+}
+
+/* Rozwinięte menu leży na hero – półprzezroczyste szkło jest tam nieczytelne */
+.header[data-menu-open='true'] {
+  background: rgba(246, 248, 251, 0.97);
+}
+
+.header[data-hidden='true'] {
+  transform: translate3d(0, -100%, 0);
+}
+
+.bar {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  flex: none;
+}
+
+.logo img {
+  height: 44px;
+  width: auto;
+  filter: var(--h-logo);
+  transition: filter 0.4s ease;
+}
+
+.nav {
+  display: none;
+  gap: clamp(20px, 2.5vw, 36px);
+  white-space: nowrap;
+}
+
+.navLink {
+  padding: 8px 0 10px;
+  font: 500 15px/1 var(--font-sans);
+  color: var(--h-nav);
+  background-image: linear-gradient(var(--h-underline), var(--h-underline));
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  background-size: 0% 2px;
+  transition:
+    color 0.35s var(--ease),
+    background-size 0.5s var(--ease);
+}
+
+.navLink:hover {
+  color: var(--h-hover);
+  background-size: 100% 2px;
+}
+
+.actions {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 28px);
+}
+
+.phone {
+  display: none;
+  font: 500 15px/1 var(--font-sans);
+  color: var(--h-ink);
+  white-space: nowrap;
+  transition: color 0.4s ease;
+}
+
+.phone:hover {
+  color: var(--h-hover);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 0 12px 0 12px;
+  background: var(--h-btn-bg);
+  color: var(--h-btn-fg);
+  font: 600 15px/1 var(--font-sans);
+  white-space: nowrap;
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+.cta:hover {
+  background: var(--h-btn-hover);
+  color: var(--h-btn-fg);
+}
+
+.burger {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  border-radius: 0 12px 0 12px;
+  background: var(--h-burger);
+  cursor: pointer;
+  transition: background 0.4s ease;
+}
+
+.burger span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--h-ink);
+  transition: background 0.4s ease;
+}
+
+/* Absolutnie pod paskiem, żeby otwarcie/zamknięcie menu nie przesuwało strony
+   (inaczej przewijanie do kotwicy liczy cel przy rozwiniętym menu i chybia). */
+.mobileNav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 8px var(--gutter) 24px;
+  border-top: 1px solid var(--line);
+  background: rgba(246, 248, 251, 0.97);
+  backdrop-filter: blur(22px) saturate(170%);
+  box-shadow: 0 24px 40px -24px rgba(14, 26, 51, 0.25);
+  font: 500 18px/1 var(--font-sans);
+  color: var(--ink);
+}
+
+.mobileNav a {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--tint);
+}
+
+.mobileNav .mobilePhone {
+  padding: 18px 0 0;
+  border-bottom: 0;
+  font-weight: 600;
+  color: var(--brand);
+}
+
+@media (min-width: 640px) and (max-width: 1099.98px) {
+  .phone {
+    display: inline;
+  }
+}
+
+@media (min-width: 1100px) {
+  .nav {
+    display: flex;
+  }
+
+  .burger,
+  .mobileNav {
+    display: none;
+  }
+}
+
+@media (min-width: 1240px) {
+  .phone {
+    display: inline;
+  }
+}

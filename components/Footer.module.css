@@ -1,0 +1,73 @@
+.footer {
+  padding-top: 72px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px 64px;
+}
+
+.brand {
+  flex: 1 1 320px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font: 400 15px/1.6 var(--font-sans);
+  color: var(--text-2);
+}
+
+.logo {
+  height: 52px;
+  width: auto;
+  align-self: flex-start;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font: 500 15px/1 var(--font-sans);
+  color: var(--ink-2);
+}
+
+.company {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font: normal 400 15px/1.55 var(--font-sans);
+  color: var(--text-2);
+}
+
+.company strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font: 400 13px/1.5 var(--font-sans);
+  color: var(--text-3);
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.studio {
+  font-weight: 600;
+  color: var(--ink);
+}

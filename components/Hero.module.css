@@ -1,0 +1,69 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  margin-top: calc(var(--header-h) * -1);
+  padding: var(--header-h) 0 clamp(64px, 7vw, 104px);
+  background: var(--navy-900);
+  border-bottom-left-radius: clamp(80px, 10vw, 180px);
+  overflow: hidden;
+  color: #fff;
+}
+
+.inner {
+  padding-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 56px 40px;
+}
+
+.copy {
+  flex: 1 1 460px;
+  max-width: 620px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 64px 0 8px;
+}
+
+.title {
+  font: 500 clamp(52px, 6.1vw, 88px) / 0.97 var(--font-sans);
+  letter-spacing: -0.045em;
+  color: #fff;
+}
+
+.lead {
+  max-width: 430px;
+  font: 400 18px/1.55 var(--font-sans);
+  color: var(--muted-on-dark);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 28px;
+  margin-top: 6px;
+}
+
+.phone {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.phoneHint {
+  font: 400 13px/1 var(--font-sans);
+  color: var(--muted-on-dark);
+}
+
+.phoneNumber {
+  font: 600 17px/1 var(--font-sans);
+  color: #fff;
+  transition: color 0.35s var(--ease);
+}
+
+.phone:hover .phoneNumber {
+  color: var(--blue-200);
+}

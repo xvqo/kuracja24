@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:#EBF1F8;font-family:Figtree,system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#0E1A33}
+a{color:inherit;text-decoration:none;transition:color .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)}a:hover{color:#2A86DB}
+</style>
+</helmet>
+<div data-screen-label="Strona główna" style="background:#EBF1F8;color:#0E1A33;overflow-x:clip">
+
+<header style="position:sticky;top:0;z-index:20;background:{{ h.bg }};backdrop-filter:{{ h.blur }};-webkit-backdrop-filter:{{ h.blur }};box-shadow:{{ h.line }};transform:translate3d(0,{{ h.ty }},0);transition:background .45s ease,box-shadow .45s ease,backdrop-filter .45s ease,transform .5s cubic-bezier(.22,1,.36,1)">
+<div style="max-width:1760px;margin:0 auto;height:88px;padding:0 clamp(20px,5vw,96px);box-sizing:border-box;display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:24px">
+<a href="#start" style="display:block;flex:none"><img src="assets/kuracja-logo.png" alt="Kuracja" style="height:44px;width:auto;display:block;filter:{{ h.logo }};transition:filter .4s ease"></a>
+<sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+<nav style="display:flex;flex-wrap:nowrap;gap:clamp(20px,2.5vw,36px);font:500 15px/1 Figtree,sans-serif;color:{{ h.nav }};white-space:nowrap;transition:color .4s ease"><a href="#przychodnia" style="color:{{ h.nav }};padding:8px 0 10px;background-image:linear-gradient({{ h.ul }},{{ h.ul }});background-repeat:no-repeat;background-position:50% 100%;background-size:0% 2px;transition:color .35s cubic-bezier(.22,1,.36,1),background-size .5s cubic-bezier(.22,1,.36,1)" style-hover="color:{{ h.hover }};background-size:100% 2px">Przychodnia</a><a href="#fizjoterapia" style="color:{{ h.nav }};padding:8px 0 10px;background-image:linear-gradient({{ h.ul }},{{ h.ul }});background-repeat:no-repeat;background-position:50% 100%;background-size:0% 2px;transition:color .35s cubic-bezier(.22,1,.36,1),background-size .5s cubic-bezier(.22,1,.36,1)" style-hover="color:{{ h.hover }};background-size:100% 2px">Fizjoterapia</a><a href="#nfz" style="color:{{ h.nav }};padding:8px 0 10px;background-image:linear-gradient({{ h.ul }},{{ h.ul }});background-repeat:no-repeat;background-position:50% 100%;background-size:0% 2px;transition:color .35s cubic-bezier(.22,1,.36,1),background-size .5s cubic-bezier(.22,1,.36,1)" style-hover="color:{{ h.hover }};background-size:100% 2px">NFZ</a><a href="#rejestracja" style="color:{{ h.nav }};padding:8px 0 10px;background-image:linear-gradient({{ h.ul }},{{ h.ul }});background-repeat:no-repeat;background-position:50% 100%;background-size:0% 2px;transition:color .35s cubic-bezier(.22,1,.36,1),background-size .5s cubic-bezier(.22,1,.36,1)" style-hover="color:{{ h.hover }};background-size:100% 2px">Rejestracja</a><a href="#kontakt" style="color:{{ h.nav }};padding:8px 0 10px;background-image:linear-gradient({{ h.ul }},{{ h.ul }});background-repeat:no-repeat;background-position:50% 100%;background-size:0% 2px;transition:color .35s cubic-bezier(.22,1,.36,1),background-size .5s cubic-bezier(.22,1,.36,1)" style-hover="color:{{ h.hover }};background-size:100% 2px">Kontakt</a></nav>
+</sc-if>
+<div style="display:flex;align-items:center;gap:clamp(12px,2vw,28px);flex:none">
+<sc-if value="{{ showPhone }}" hint-placeholder-val="{{ true }}"><a href="tel:+48833522492" style="font:500 15px/1 Figtree,sans-serif;color:{{ h.ink }};font-variant-numeric:tabular-nums;white-space:nowrap;transition:color .4s ease" style-hover="color:{{ h.hover }}">83 352 24 92</a></sc-if>
+<a href="#rejestracja" style="display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:0 12px 0 12px;background:{{ h.btnBg }};color:{{ h.btnFg }};font:600 15px/1 Figtree,sans-serif;white-space:nowrap;transition:background .4s ease,color .4s ease" style-hover="background:{{ h.btnHover }};color:{{ h.btnFg }}">Umów wizytę</a>
+<sc-if value="{{ compact }}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{ toggleMenu }}" aria-label="Menu" aria-expanded="{{ menuOpen }}" style="width:44px;height:44px;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:0;padding:0;border-radius:0 12px 0 12px;background:{{ h.burgerBg }};cursor:pointer"><span style="width:18px;height:1.5px;background:{{ h.ink }};display:block"></span><span style="width:18px;height:1.5px;background:{{ h.ink }};display:block"></span><span style="width:18px;height:1.5px;background:{{ h.ink }};display:block"></span></button>
+</sc-if>
+</div>
+</div>
+<sc-if value="{{ menuVisible }}" hint-placeholder-val="{{ false }}">
+<nav onClick="{{ closeMenu }}" style="display:flex;flex-direction:column;padding:8px clamp(20px,5vw,96px) 24px;border-top:1px solid #DCE4EF;font:500 18px/1 Figtree,sans-serif;color:#0E1A33">
+<a href="#przychodnia" style="padding:16px 0;border-bottom:1px solid #E4ECF7">Przychodnia</a>
+<a href="#fizjoterapia" style="padding:16px 0;border-bottom:1px solid #E4ECF7">Fizjoterapia</a>
+<a href="#nfz" style="padding:16px 0;border-bottom:1px solid #E4ECF7">NFZ</a>
+<a href="#rejestracja" style="padding:16px 0;border-bottom:1px solid #E4ECF7">Rejestracja</a>
+<a href="#kontakt" style="padding:16px 0;border-bottom:1px solid #E4ECF7">Kontakt</a>
+<a href="tel:+48833522492" style="padding:18px 0 0;font:600 18px/1 Figtree,sans-serif;color:#2F4F96;font-variant-numeric:tabular-nums">Zadzwoń: 83 352 24 92</a>
+</nav>
+</sc-if>
+</header>
+
+<div ref="{{ heroRef }}" style="position:relative;isolation:isolate;margin-top:-88px;padding:88px 0 clamp(64px,7vw,104px);background:#0B1630;border-radius:0 0 0 clamp(80px,10vw,180px);overflow:hidden;color:#fff">
+<div ref="{{ bgRef }}" aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:{{ bgOpacity }};transition:opacity 1.6s ease"></div>
+<section id="start" data-screen-label="01 Hero" style="max-width:1760px;margin:0 auto;padding:24px clamp(20px,5vw,96px) 0;box-sizing:border-box;display:flex;flex-wrap:wrap;justify-content:space-between;gap:56px 40px">
+<div style="flex:1 1 460px;max-width:620px;min-width:0;display:flex;flex-direction:column;justify-content:flex-start;gap:56px;padding-top:64px;padding-bottom:8px">
+<div style="display:flex;flex-direction:column;gap:28px">
+<p style="margin:0;font:500 15px/1.4 Figtree,sans-serif;color:#8CCBFA">Przychodnia specjalistyczna i centrum fizjoterapii</p>
+<h1 style="margin:0;font:500 clamp(52px,6.1vw,88px)/0.97 Figtree,sans-serif;letter-spacing:-0.045em;color:#fff">Stawiamy<br>na nogi<br>od ponad 20 lat.</h1>
+<p style="margin:0;max-width:430px;font:400 18px/1.55 Figtree,sans-serif;color:#B4C2DA;text-wrap:pretty">Lekarze dziewięciu specjalności i centrum rehabilitacji pod jednym dachem. Część wizyt i zabiegów w ramach umowy z NFZ.</p>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px;margin-top:6px">
+<a href="#rejestracja" style="display:inline-flex;align-items:center;height:56px;padding:0 30px;border-radius:0 16px 0 16px;background:#fff;color:#0B1630;font:600 16px/1 Figtree,sans-serif;transition:background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background:#E4ECF7;color:#0B1630;transform:translateY(-1px);box-shadow:0 12px 28px -12px rgba(0,0,0,.45)">Umów wizytę</a>
+<a href="tel:+48833522492" style="display:flex;flex-direction:column;gap:5px;transition:background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="color:#8CCBFA"><span style="font:400 13px/1 Figtree,sans-serif;color:#B4C2DA">lub zadzwoń</span><span style="font:600 17px/1 Figtree,sans-serif;color:#fff;font-variant-numeric:tabular-nums">83 352 24 92</span></a>
+</div>
+</div>
+</div>
+
+<div style="flex:0 1 860px;min-width:min(100%,380px);display:flex;flex-direction:column;gap:18px;padding-top:24px">
+<div ref="{{ phRef }}" onMouseEnter="{{ phHold }}" onMouseLeave="{{ phFree }}" style="position:relative;height:clamp(440px,44vw,640px)">
+<div style="position:absolute;inset:0;overflow:hidden;background:#13213F;clip-path:{{ phClip }};border-radius:{{ phRadius }};transition:clip-path .8s cubic-bezier(.22,1,.36,1)">
+<img src="https://images.unsplash.com/photo-1758063800058-473d9071937a?w=1400&amp;q=80&amp;auto=format&amp;fit=crop" alt="Reumatologia (zdjęcie poglądowe)" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;opacity:{{ photos.0.op }};transform:scale({{ photos.0.sc }});transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 4s cubic-bezier(.22,1,.36,1)">
+<img src="https://images.unsplash.com/photo-1758691461935-202e2ef6b69f?w=1400&amp;q=80&amp;auto=format&amp;fit=crop" alt="Alergologia (zdjęcie poglądowe)" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;opacity:{{ photos.1.op }};transform:scale({{ photos.1.sc }});transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 4s cubic-bezier(.22,1,.36,1)">
+<img src="https://images.unsplash.com/photo-1666887360361-d4e8487f0026?w=1400&amp;q=80&amp;auto=format&amp;fit=crop" alt="Okulistyka (zdjęcie poglądowe)" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;opacity:{{ photos.2.op }};transform:scale({{ photos.2.sc }});transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 4s cubic-bezier(.22,1,.36,1)">
+<img src="https://images.unsplash.com/photo-1758691461990-03b49d969495?w=1400&amp;q=80&amp;auto=format&amp;fit=crop" alt="Endokrynologia (zdjęcie poglądowe)" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;opacity:{{ photos.3.op }};transform:scale({{ photos.3.sc }});transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 4s cubic-bezier(.22,1,.36,1)">
+<img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?w=1400&amp;q=80&amp;auto=format&amp;fit=crop" alt="Dermatologia (zdjęcie poglądowe)" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;opacity:{{ photos.4.op }};transform:scale({{ photos.4.sc }});transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 4s cubic-bezier(.22,1,.36,1)">
+<img src="https://images.unsplash.com/photo-1758691462878-6edc3d3da1be?w=1400&amp;q=80&amp;auto=format&amp;fit=crop" alt="Laryngologia (zdjęcie poglądowe)" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;opacity:{{ photos.5.op }};transform:scale({{ photos.5.sc }});transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 4s cubic-bezier(.22,1,.36,1)">
+<img src="https://images.unsplash.com/photo-1758691462123-8a17ae95d203?w=1400&amp;q=80&amp;auto=format&amp;fit=crop" alt="Chirurgia naczyniowa (zdjęcie poglądowe)" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;opacity:{{ photos.6.op }};transform:scale({{ photos.6.sc }});transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 4s cubic-bezier(.22,1,.36,1)">
+<img src="https://images.unsplash.com/photo-1584516150909-c43483ee7932?w=1400&amp;q=80&amp;auto=format&amp;fit=crop" alt="Urologia (zdjęcie poglądowe)" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;opacity:{{ photos.7.op }};transform:scale({{ photos.7.sc }});transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 4s cubic-bezier(.22,1,.36,1)">
+<img src="https://images.unsplash.com/photo-1768507423533-b87b62769758?w=1400&amp;q=80&amp;auto=format&amp;fit=crop" alt="Neurologia (zdjęcie poglądowe)" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;opacity:{{ photos.8.op }};transform:scale({{ photos.8.sc }});transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 4s cubic-bezier(.22,1,.36,1)">
+</div>
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;border-radius:0 140px 0 140px;background:radial-gradient(130% 100% at 100% 100%,rgba(11,22,48,.95) 0%,rgba(11,22,48,.72) 32%,rgba(11,22,48,0) 64%)"></div>
+<div aria-live="polite" style="position:absolute;right:clamp(24px,3vw,44px);bottom:clamp(24px,3vw,40px);width:min(380px,calc(100% - 180px));height:120px;pointer-events:none">
+<sc-for list="{{ phLabels }}" as="lb" hint-placeholder-count="1">
+<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;gap:10px;text-align:right;opacity:{{ lb.op }};transform:translate3d(0,{{ lb.ty }}px,0);transition:opacity .6s ease,transform .8s cubic-bezier(.22,1,.36,1)"><span style="font:500 13px/1 Figtree,sans-serif;color:#8CCBFA;font-variant-numeric:tabular-nums">{{ lb.num }} / 09</span><span style="font:500 clamp(30px,2.8vw,42px)/1 Figtree,sans-serif;letter-spacing:-0.035em;color:#fff">{{ lb.name }}</span><span style="font:500 16px/1.4 Figtree,sans-serif;color:#B9D9F5;text-wrap:pretty;text-shadow:0 1px 12px rgba(11,22,48,.8)">{{ lb.desc }}</span></div>
+</sc-for>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:6px">
+<sc-for list="{{ bars }}" as="b" hint-placeholder-count="9">
+<button type="button" onClick="{{ b.pick }}" aria-label="{{ b.label }}" style="height:20px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center"><span style="position:relative;display:block;width:100%;height:3px;border-radius:2px;background:rgba(255,255,255,.18);overflow:hidden"><span style="position:absolute;left:0;top:0;bottom:0;width:{{ b.w }};background:#8CCBFA;transition:{{ b.tr }}"></span></span></button>
+</sc-for>
+</div>
+</div>
+</section>
+</div>
+
+<section id="przychodnia" data-screen-label="02 Przychodnia" style="max-width:1760px;margin:0 auto;padding:clamp(96px,11vw,160px) clamp(20px,5vw,96px) clamp(80px,9vw,128px);box-sizing:border-box;display:flex;flex-wrap:wrap;gap:48px clamp(40px,6vw,96px)">
+<div style="flex:1 1 340px;max-width:460px;display:flex;flex-direction:column;gap:24px">
+<p style="margin:0;font:500 15px/1.4 Figtree,sans-serif;color:#4A5874">Przychodnia specjalistyczna</p>
+<h2 style="margin:0;font:500 clamp(40px,4.2vw,60px)/1 Figtree,sans-serif;letter-spacing:-0.04em;color:#0E1A33">Dziewięć poradni, jeden adres.</h2>
+<p style="margin:0;font:400 17px/1.6 Figtree,sans-serif;color:#4A5874;text-wrap:pretty">Specjaliści z wieloletnim doświadczeniem i bogatą praktyką. Część lekarzy przyjmuje w ramach umowy z NFZ. Sprawdź, kto i w jakich godzinach przyjmuje.</p>
+<a href="#" style="align-self:flex-start;display:inline-flex;align-items:center;height:52px;padding:0 26px;margin-top:8px;border-radius:0 16px 0 16px;box-shadow:inset 0 0 0 1.5px #2F4F96;color:#2F4F96;font:600 15px/1 Figtree,sans-serif;transition:background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background:#2F4F96;color:#fff">Harmonogram przyjęć</a>
+</div>
+<div style="flex:2 1 560px;min-width:0;display:flex;flex-direction:column;border-bottom:1px solid #DCE4EF">
+<a href="#" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:0 12px;padding:22px 16px;border-top:1px solid #DCE4EF;border-radius:0;transition:padding .45s cubic-bezier(.22,1,.36,1),border-radius .45s cubic-bezier(.22,1,.36,1),background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background-color:rgba(42,134,219,.08);color:#2F4F96;padding:22px 16px 22px 30px;border-radius:0 24px 0 24px;border-top-color:rgba(220,228,239,0)"><span style="font:500 13px/1 Figtree,sans-serif;color:#6A7894;font-variant-numeric:tabular-nums">01</span><span style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 20px"><span style="font:600 22px/1.15 Figtree,sans-serif;letter-spacing:-0.02em;min-width:240px">Reumatologia</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Choroby stawów, kręgosłupa i tkanki łącznej</span></span><span style="font:400 20px/1 Figtree,sans-serif;color:#2A86DB">→</span></a>
+<a href="#" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:0 12px;padding:22px 16px;border-top:1px solid #DCE4EF;border-radius:0;transition:padding .45s cubic-bezier(.22,1,.36,1),border-radius .45s cubic-bezier(.22,1,.36,1),background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background-color:rgba(42,134,219,.08);color:#2F4F96;padding:22px 16px 22px 30px;border-radius:0 24px 0 24px;border-top-color:rgba(220,228,239,0)"><span style="font:500 13px/1 Figtree,sans-serif;color:#6A7894;font-variant-numeric:tabular-nums">02</span><span style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 20px"><span style="font:600 22px/1.15 Figtree,sans-serif;letter-spacing:-0.02em;min-width:240px">Alergologia</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Diagnostyka i leczenie alergii</span></span><span style="font:400 20px/1 Figtree,sans-serif;color:#2A86DB">→</span></a>
+<a href="#" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:0 12px;padding:22px 16px;border-top:1px solid #DCE4EF;border-radius:0;transition:padding .45s cubic-bezier(.22,1,.36,1),border-radius .45s cubic-bezier(.22,1,.36,1),background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background-color:rgba(42,134,219,.08);color:#2F4F96;padding:22px 16px 22px 30px;border-radius:0 24px 0 24px;border-top-color:rgba(220,228,239,0)"><span style="font:500 13px/1 Figtree,sans-serif;color:#6A7894;font-variant-numeric:tabular-nums">03</span><span style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 20px"><span style="font:600 22px/1.15 Figtree,sans-serif;letter-spacing:-0.02em;min-width:240px">Okulistyka</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Badanie wzroku i choroby oczu</span></span><span style="font:400 20px/1 Figtree,sans-serif;color:#2A86DB">→</span></a>
+<a href="#" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:0 12px;padding:22px 16px;border-top:1px solid #DCE4EF;border-radius:0;transition:padding .45s cubic-bezier(.22,1,.36,1),border-radius .45s cubic-bezier(.22,1,.36,1),background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background-color:rgba(42,134,219,.08);color:#2F4F96;padding:22px 16px 22px 30px;border-radius:0 24px 0 24px;border-top-color:rgba(220,228,239,0)"><span style="font:500 13px/1 Figtree,sans-serif;color:#6A7894;font-variant-numeric:tabular-nums">04</span><span style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 20px"><span style="font:600 22px/1.15 Figtree,sans-serif;letter-spacing:-0.02em;min-width:240px">Endokrynologia</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Tarczyca, cukrzyca i zaburzenia hormonalne</span></span><span style="font:400 20px/1 Figtree,sans-serif;color:#2A86DB">→</span></a>
+<a href="#" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:0 12px;padding:22px 16px;border-top:1px solid #DCE4EF;border-radius:0;transition:padding .45s cubic-bezier(.22,1,.36,1),border-radius .45s cubic-bezier(.22,1,.36,1),background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background-color:rgba(42,134,219,.08);color:#2F4F96;padding:22px 16px 22px 30px;border-radius:0 24px 0 24px;border-top-color:rgba(220,228,239,0)"><span style="font:500 13px/1 Figtree,sans-serif;color:#6A7894;font-variant-numeric:tabular-nums">05</span><span style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 20px"><span style="font:600 22px/1.15 Figtree,sans-serif;letter-spacing:-0.02em;min-width:240px">Dermatologia</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Choroby skóry, włosów i paznokci</span></span><span style="font:400 20px/1 Figtree,sans-serif;color:#2A86DB">→</span></a>
+<a href="#" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:0 12px;padding:22px 16px;border-top:1px solid #DCE4EF;border-radius:0;transition:padding .45s cubic-bezier(.22,1,.36,1),border-radius .45s cubic-bezier(.22,1,.36,1),background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background-color:rgba(42,134,219,.08);color:#2F4F96;padding:22px 16px 22px 30px;border-radius:0 24px 0 24px;border-top-color:rgba(220,228,239,0)"><span style="font:500 13px/1 Figtree,sans-serif;color:#6A7894;font-variant-numeric:tabular-nums">06</span><span style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 20px"><span style="font:600 22px/1.15 Figtree,sans-serif;letter-spacing:-0.02em;min-width:240px">Laryngologia</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Ucho, nos, gardło i krtań</span></span><span style="font:400 20px/1 Figtree,sans-serif;color:#2A86DB">→</span></a>
+<a href="#" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:0 12px;padding:22px 16px;border-top:1px solid #DCE4EF;border-radius:0;transition:padding .45s cubic-bezier(.22,1,.36,1),border-radius .45s cubic-bezier(.22,1,.36,1),background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background-color:rgba(42,134,219,.08);color:#2F4F96;padding:22px 16px 22px 30px;border-radius:0 24px 0 24px;border-top-color:rgba(220,228,239,0)"><span style="font:500 13px/1 Figtree,sans-serif;color:#6A7894;font-variant-numeric:tabular-nums">07</span><span style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 20px"><span style="font:600 22px/1.15 Figtree,sans-serif;letter-spacing:-0.02em;min-width:240px">Chirurgia naczyniowa</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Żylaki i choroby naczyń krwionośnych</span></span><span style="font:400 20px/1 Figtree,sans-serif;color:#2A86DB">→</span></a>
+<a href="#" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:0 12px;padding:22px 16px;border-top:1px solid #DCE4EF;border-radius:0;transition:padding .45s cubic-bezier(.22,1,.36,1),border-radius .45s cubic-bezier(.22,1,.36,1),background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background-color:rgba(42,134,219,.08);color:#2F4F96;padding:22px 16px 22px 30px;border-radius:0 24px 0 24px;border-top-color:rgba(220,228,239,0)"><span style="font:500 13px/1 Figtree,sans-serif;color:#6A7894;font-variant-numeric:tabular-nums">08</span><span style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 20px"><span style="font:600 22px/1.15 Figtree,sans-serif;letter-spacing:-0.02em;min-width:240px">Urologia</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Układ moczowy i męski układ płciowy</span></span><span style="font:400 20px/1 Figtree,sans-serif;color:#2A86DB">→</span></a>
+<a href="#" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:0 12px;padding:22px 16px;border-top:1px solid #DCE4EF;border-radius:0;transition:padding .45s cubic-bezier(.22,1,.36,1),border-radius .45s cubic-bezier(.22,1,.36,1),background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background-color:rgba(42,134,219,.08);color:#2F4F96;padding:22px 16px 22px 30px;border-radius:0 24px 0 24px;border-top-color:rgba(220,228,239,0)"><span style="font:500 13px/1 Figtree,sans-serif;color:#6A7894;font-variant-numeric:tabular-nums">09</span><span style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 20px"><span style="font:600 22px/1.15 Figtree,sans-serif;letter-spacing:-0.02em;min-width:240px">Neurologia</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Układ nerwowy, bóle głowy i kręgosłupa</span></span><span style="font:400 20px/1 Figtree,sans-serif;color:#2A86DB">→</span></a>
+</div>
+</section>
+
+<section id="fizjoterapia" data-screen-label="03 Fizjoterapia" style="background:linear-gradient(180deg,#EBF1F8 0,#fff 140px,#fff calc(100% - 140px),#EBF1F8 100%)">
+<div style="max-width:1760px;margin:0 auto;padding:clamp(80px,9vw,128px) clamp(20px,5vw,96px);box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:56px clamp(40px,6vw,96px)">
+<div style="flex:1 1 440px;min-width:0;height:clamp(460px,46vw,660px);border-radius:0 160px 0 160px;overflow:hidden;background:#E4ECF7">
+<img src="https://images.unsplash.com/photo-1706353399656-210cca727a33?w=1400&amp;q=80&amp;auto=format&amp;fit=crop" alt="Fizjoterapeuta podczas terapii manualnej z pacjentką" style="width:100%;height:100%;object-fit:cover;object-position:45% 30%;display:block">
+</div>
+<div style="flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:24px">
+<p style="margin:0;font:500 15px/1.4 Figtree,sans-serif;color:#4A5874">Centrum fizjoterapii i rehabilitacji</p>
+<h2 style="margin:0;font:500 clamp(40px,4.2vw,60px)/1 Figtree,sans-serif;letter-spacing:-0.04em;color:#0E1A33">Zabiegi, które przywracają sprawność.</h2>
+<p style="margin:0;max-width:520px;font:400 17px/1.6 Figtree,sans-serif;color:#4A5874;text-wrap:pretty">Doświadczeni rehabilitanci, profesjonalnie wyposażone sale zabiegowe i nowoczesny sprzęt. Zabiegi wykonujemy także w ramach NFZ.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0 40px;margin-top:12px">
+<div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-top:1px solid #DCE4EF"><span style="font:600 18px/1.2 Figtree,sans-serif;letter-spacing:-0.01em">Kinezyterapia</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Ćwiczenia lecznicze pod okiem rehabilitanta</span></div>
+<div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-top:1px solid #DCE4EF"><span style="font:600 18px/1.2 Figtree,sans-serif;letter-spacing:-0.01em">Krioterapia</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Miejscowe leczenie zimnem, łagodzi ból i obrzęk</span></div>
+<div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-top:1px solid #DCE4EF"><span style="font:600 18px/1.2 Figtree,sans-serif;letter-spacing:-0.01em">Masaże</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Rozluźnienie mięśni i poprawa krążenia</span></div>
+<div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-top:1px solid #DCE4EF"><span style="font:600 18px/1.2 Figtree,sans-serif;letter-spacing:-0.01em">Elektrolecznictwo</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Prądy lecznicze o działaniu przeciwbólowym</span></div>
+<div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-top:1px solid #DCE4EF"><span style="font:600 18px/1.2 Figtree,sans-serif;letter-spacing:-0.01em">Pole elektromagnetyczne</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Magnetoterapia wspierająca regenerację tkanek</span></div>
+<div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-top:1px solid #DCE4EF"><span style="font:600 18px/1.2 Figtree,sans-serif;letter-spacing:-0.01em">Światło- i ciepłolecznictwo</span><span style="font:400 15px/1.45 Figtree,sans-serif;color:#4A5874">Naświetlania i zabiegi cieplne</span></div>
+</div>
+<a href="#" style="align-self:flex-start;display:inline-flex;align-items:center;height:52px;padding:0 26px;margin-top:4px;border-radius:0 16px 0 16px;background:#2F4F96;color:#fff;font:600 15px/1 Figtree,sans-serif;transition:background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background:#24407D;color:#fff;transform:translateY(-1px);box-shadow:0 12px 28px -12px rgba(47,79,150,.55)">Wszystkie zabiegi</a>
+</div>
+</div>
+</section>
+
+<section id="nfz" data-screen-label="04 NFZ i rejestracja" style="max-width:1760px;margin:0 auto;padding:clamp(80px,9vw,128px) clamp(20px,5vw,96px) 0;box-sizing:border-box">
+<div style="background:#0B1630;color:#fff;border-radius:0 140px 0 140px;padding:clamp(48px,6.5vw,104px) clamp(28px,6.5vw,104px);display:flex;flex-wrap:wrap;gap:64px clamp(40px,7vw,120px)">
+<div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:24px">
+<p style="margin:0;font:500 15px/1.4 Figtree,sans-serif;color:#8CCBFA">Narodowy Fundusz Zdrowia</p>
+<h2 style="margin:0;font:500 clamp(38px,4vw,56px)/1.02 Figtree,sans-serif;letter-spacing:-0.04em;color:#fff">Porady i zabiegi także w ramach NFZ.</h2>
+<p style="margin:0;max-width:460px;font:400 17px/1.6 Figtree,sans-serif;color:#B4C2DA;text-wrap:pretty">Realizujemy porady lekarskie i zabiegi fizjoterapii w ramach umowy z Narodowym Funduszem Zdrowia. Sprawdź, kto i w jaki sposób może z tego skorzystać.</p>
+<a href="#" style="align-self:flex-start;margin-top:4px;padding-bottom:5px;border-bottom:1.5px solid rgba(255,255,255,.5);font:600 16px/1 Figtree,sans-serif;color:#fff;transition:background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="color:#8CCBFA;border-color:#8CCBFA">Zasady korzystania z NFZ</a>
+</div>
+<div id="rejestracja" style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:8px">
+<p style="margin:0 0 16px;font:500 15px/1.4 Figtree,sans-serif;color:#8CCBFA">Rejestracja w trzech krokach</p>
+<div style="display:grid;grid-template-columns:56px minmax(0,1fr);gap:20px;padding:22px 0;border-top:1px solid rgba(255,255,255,.14)"><span style="display:grid;place-items:center;align-self:start;width:44px;height:44px;border-radius:0 14px 0 14px;background:linear-gradient(150deg,#5AB0F4,#2A86DB 46%,#2F4F96);font:600 17px/1 Figtree,sans-serif;color:#fff;font-variant-numeric:tabular-nums">1</span><span style="display:flex;flex-direction:column;gap:6px"><span style="font:600 20px/1.2 Figtree,sans-serif;color:#fff">Zadzwoń lub przyjdź</span><span style="font:400 15px/1.55 Figtree,sans-serif;color:#B4C2DA">Telefonicznie pod numerem 83 352 24 92 albo osobiście w rejestracji przy ul. Warszawskiej 17.</span></span></div>
+<div style="display:grid;grid-template-columns:56px minmax(0,1fr);gap:20px;padding:22px 0;border-top:1px solid rgba(255,255,255,.14)"><span style="display:grid;place-items:center;align-self:start;width:44px;height:44px;border-radius:0 14px 0 14px;background:linear-gradient(150deg,#5AB0F4,#2A86DB 46%,#2F4F96);font:600 17px/1 Figtree,sans-serif;color:#fff;font-variant-numeric:tabular-nums">2</span><span style="display:flex;flex-direction:column;gap:6px"><span style="font:600 20px/1.2 Figtree,sans-serif;color:#fff">Przygotuj dokumenty</span><span style="font:400 15px/1.55 Figtree,sans-serif;color:#B4C2DA">Dokument tożsamości, a przy wizycie w ramach NFZ także skierowanie, jeśli jest wymagane.</span></span></div>
+<div style="display:grid;grid-template-columns:56px minmax(0,1fr);gap:20px;padding:22px 0;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14)"><span style="display:grid;place-items:center;align-self:start;width:44px;height:44px;border-radius:0 14px 0 14px;background:linear-gradient(150deg,#5AB0F4,#2A86DB 46%,#2F4F96);font:600 17px/1 Figtree,sans-serif;color:#fff;font-variant-numeric:tabular-nums">3</span><span style="display:flex;flex-direction:column;gap:6px"><span style="font:600 20px/1.2 Figtree,sans-serif;color:#fff">Przyjdź kilka minut wcześniej</span><span style="font:400 15px/1.55 Figtree,sans-serif;color:#B4C2DA">Spokojnie dopełnisz formalności przed wizytą lub zabiegiem.</span></span></div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px;margin-top:28px">
+<a href="tel:+48833522492" style="display:inline-flex;align-items:center;height:56px;padding:0 30px;border-radius:0 16px 0 16px;background:#fff;color:#0B1630;font:600 16px/1 Figtree,sans-serif;transition:background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background:#E4ECF7;color:#0B1630;transform:translateY(-1px);box-shadow:0 12px 28px -12px rgba(0,0,0,.45)">Zadzwoń i umów wizytę</a>
+<a href="#" style="font:600 16px/1 Figtree,sans-serif;color:#fff;padding-bottom:5px;border-bottom:1.5px solid rgba(255,255,255,.5);transition:background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="color:#8CCBFA;border-color:#8CCBFA">Co przygotować</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="o-nas" data-screen-label="05 Dlaczego Kuracja" style="max-width:1760px;margin:0 auto;padding:clamp(96px,11vw,160px) clamp(20px,5vw,96px) clamp(80px,9vw,128px);box-sizing:border-box;display:flex;flex-direction:column;gap:clamp(56px,6vw,88px)">
+<div style="display:flex;flex-direction:column;gap:24px;max-width:1080px">
+<p style="margin:0;font:500 15px/1.4 Figtree,sans-serif;color:#4A5874">Dlaczego Kuracja</p>
+<p style="margin:0;font:500 clamp(30px,3.4vw,48px)/1.16 Figtree,sans-serif;letter-spacing:-0.03em;color:#0E1A33;text-wrap:pretty">Od ponad 20 lat dbamy o zdrowie mieszkańców Radzynia. <span style="color:#6A7894">Lekarze specjaliści i rehabilitanci pracują u nas jako jeden zespół, w centrum miasta, w dogodnej lokalizacji.</span></p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:end">
+<div style="height:clamp(360px,32vw,460px);border-radius:0 96px 0 96px;overflow:hidden;background:#E4ECF7"><img src="https://images.unsplash.com/photo-1772122028843-9139d23af4fb?w=1000&amp;q=80&amp;auto=format&amp;fit=crop" alt="Zabieg z użyciem aparatu fizykoterapeutycznego" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+<div style="height:clamp(300px,26vw,380px);border-radius:0 96px 0 96px;overflow:hidden;background:#E4ECF7"><img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=1000&amp;q=80&amp;auto=format&amp;fit=crop" alt="Masaż leczniczy pleców" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+<div style="height:clamp(360px,32vw,460px);border-radius:0 96px 0 96px;overflow:hidden;background:#E4ECF7"><img src="https://images.unsplash.com/photo-1758063800058-473d9071937a?w=1000&amp;q=80&amp;auto=format&amp;fit=crop" alt="Dłoń terapeuty na plecach pacjenta" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:1px solid #DCE4EF"><span style="font:600 20px/1.2 Figtree,sans-serif;letter-spacing:-0.015em">Wiedza</span><span style="font:400 15px/1.55 Figtree,sans-serif;color:#4A5874;text-wrap:pretty">Nasi specjaliści stale się rozwijają i podnoszą kwalifikacje.</span></div>
+<div style="display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:1px solid #DCE4EF"><span style="font:600 20px/1.2 Figtree,sans-serif;letter-spacing:-0.015em">Doświadczenie</span><span style="font:400 15px/1.55 Figtree,sans-serif;color:#4A5874;text-wrap:pretty">Na co dzień pracujemy z różnorodnymi przypadkami, od ostrych urazów po choroby przewlekłe.</span></div>
+<div style="display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:1px solid #DCE4EF"><span style="font:600 20px/1.2 Figtree,sans-serif;letter-spacing:-0.015em">Zespół</span><span style="font:400 15px/1.55 Figtree,sans-serif;color:#4A5874;text-wrap:pretty">Lekarz i rehabilitant w jednym miejscu, więc leczenie i rehabilitacja idą w parze.</span></div>
+<div style="display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:1px solid #DCE4EF"><span style="font:600 20px/1.2 Figtree,sans-serif;letter-spacing:-0.015em">Sprzęt</span><span style="font:400 15px/1.55 Figtree,sans-serif;color:#4A5874;text-wrap:pretty">Nowoczesna aparatura diagnostyczna i urządzenia do zabiegów rehabilitacyjnych.</span></div>
+</div>
+</section>
+
+<section id="kontakt" data-screen-label="06 Kontakt" style="background:linear-gradient(180deg,#EBF1F8 0,#fff 140px,#fff calc(100% - 140px),#EBF1F8 100%)">
+<div style="max-width:1760px;margin:0 auto;padding:clamp(80px,9vw,128px) clamp(20px,5vw,96px);box-sizing:border-box;display:flex;flex-wrap:wrap;gap:56px clamp(40px,6vw,96px)">
+<div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:24px">
+<p style="margin:0;font:500 15px/1.4 Figtree,sans-serif;color:#4A5874">Kontakt</p>
+<h2 style="margin:0;font:500 clamp(40px,4.2vw,60px)/1 Figtree,sans-serif;letter-spacing:-0.04em;color:#0E1A33">Zapraszamy na Warszawską 17.</h2>
+<div style="display:flex;flex-direction:column;margin-top:16px;border-bottom:1px solid #DCE4EF">
+<div style="display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;padding:18px 0;border-top:1px solid #DCE4EF"><span style="font:400 15px/1.5 Figtree,sans-serif;color:#6A7894">Adres</span><span style="font:500 16px/1.5 Figtree,sans-serif;color:#0E1A33">ul. Warszawska 17 (Grzybek)<br>21-300 Radzyń Podlaski</span></div>
+<div style="display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;padding:18px 0;border-top:1px solid #DCE4EF"><span style="font:400 15px/1.5 Figtree,sans-serif;color:#6A7894">Rejestracja</span><a href="tel:+48833522492" style="font:500 16px/1.5 Figtree,sans-serif;color:#0E1A33;font-variant-numeric:tabular-nums">tel./fax 83 352 24 92</a></div>
+<div style="display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;padding:18px 0;border-top:1px solid #DCE4EF"><span style="font:400 15px/1.5 Figtree,sans-serif;color:#6A7894">E-mail</span><a href="mailto:kontakt@kuracja24.pl" style="font:500 16px/1.5 Figtree,sans-serif;color:#0E1A33">kontakt@kuracja24.pl</a></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:12px">
+<a href="tel:+48833522492" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:0 16px 0 16px;background:#2F4F96;color:#fff;font:600 15px/1 Figtree,sans-serif;transition:background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background:#24407D;color:#fff;transform:translateY(-1px);box-shadow:0 12px 28px -12px rgba(47,79,150,.55)">Zadzwoń</a>
+<a href="https://www.google.com/maps/dir/?api=1&amp;destination=Warszawska+17,+21-300+Radzy%C5%84+Podlaski" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:0 16px 0 16px;box-shadow:inset 0 0 0 1.5px #2F4F96;color:#2F4F96;font:600 15px/1 Figtree,sans-serif;transition:background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background:#2F4F96;color:#fff">Wyznacz trasę</a>
+</div>
+<div style="position:relative;flex:1 1 auto;min-height:260px;height:clamp(260px,22vw,340px);margin-top:12px;border-radius:0 72px 0 72px;overflow:hidden;background:#E4ECF7;box-shadow:inset 0 0 0 1px #E4ECF7">
+<iframe title="Mapa: ul. Warszawska 17, Radzyń Podlaski" src="https://www.google.com/maps?q=Warszawska+17,+21-300+Radzy%C5%84+Podlaski&amp;z=16&amp;output=embed" loading="lazy" style="position:absolute;top:-60px;left:0;width:100%;height:calc(100% + 60px);border:0;display:block;filter:grayscale(1) contrast(1.05) brightness(1.03)"></iframe>
+<div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(246,248,251,0) 60%,rgba(246,248,251,.55) 100%);mix-blend-mode:multiply"></div>
+<a href="https://www.google.com/maps/dir/?api=1&amp;destination=Warszawska+17,+21-300+Radzy%C5%84+Podlaski" target="_blank" rel="noopener" style="position:absolute;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 18px;border-radius:0 14px 0 14px;background:rgba(255,255,255,.92);box-shadow:0 10px 30px -12px rgba(14,26,51,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:600 14px/1 Figtree,sans-serif;color:#0E1A33;transition:background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background:#fff;color:#2F4F96"><span style="width:12px;height:12px;border-radius:0 4px 0 4px;background:linear-gradient(150deg,#5AB0F4,#2A86DB 46%,#2F4F96)"></span>Kuracja · Warszawska 17</a>
+</div>
+</div>
+<div style="flex:1.4 1 480px;min-width:0;box-sizing:border-box;padding:clamp(28px,4vw,56px);border-radius:0 96px 0 96px;background:#F6F8FB;box-shadow:inset 0 0 0 1px #E4ECF7">
+<sc-if value="{{ fSent }}" hint-placeholder-val="{{ false }}">
+<div style="min-height:420px;display:flex;flex-direction:column;justify-content:center;gap:20px">
+<span style="display:grid;place-items:center;width:64px;height:64px;border-radius:0 22px 0 22px;background:linear-gradient(150deg,#5AB0F4,#2A86DB 46%,#2F4F96);color:#fff;font:600 28px/1 Figtree,sans-serif">✓</span>
+<h3 style="margin:0;font:500 clamp(30px,3vw,40px)/1.05 Figtree,sans-serif;letter-spacing:-0.035em;color:#0E1A33">Dziękujemy, wiadomość wysłana.</h3>
+<p style="margin:0;max-width:440px;font:400 17px/1.6 Figtree,sans-serif;color:#4A5874">Odpowiemy najszybciej, jak to możliwe. W pilnych sprawach zadzwoń do rejestracji: 83 352 24 92.</p>
+<button type="button" onClick="{{ fReset }}" style="align-self:flex-start;height:48px;padding:0 22px;border:0;border-radius:0 14px 0 14px;background:transparent;box-shadow:inset 0 0 0 1.5px #2F4F96;color:#2F4F96;font:600 15px/1 Figtree,sans-serif;cursor:pointer;transition:background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background:#2F4F96;color:#fff">Wyślij kolejną wiadomość</button>
+</div>
+</sc-if>
+<sc-if value="{{ fOpen }}" hint-placeholder-val="{{ true }}">
+<form onSubmit="{{ fSubmit }}" novalidate="" style="display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="margin:0;font:500 clamp(28px,2.6vw,36px)/1.05 Figtree,sans-serif;letter-spacing:-0.035em;color:#0E1A33">Napisz do nas</h3>
+<p style="margin:0;font:400 15px/1.5 Figtree,sans-serif;color:#4A5874">Odpowiadamy w dni robocze. Wizytę najszybciej umówisz telefonicznie.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font:500 14px/1 Figtree,sans-serif;color:#1D2B48">W jakiej sprawie?</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ fTopics }}" as="tp" hint-placeholder-count="4">
+<button type="button" onClick="{{ tp.pick }}" aria-pressed="{{ tp.on }}" style="height:42px;padding:0 18px;border:0;border-radius:0 12px 0 12px;background:{{ tp.bg }};color:{{ tp.fg }};box-shadow:{{ tp.ring }};font:600 14px/1 Figtree,sans-serif;cursor:pointer;transition:background .2s,color .2s">{{ tp.label }}</button>
+</sc-for>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+<label style="display:flex;flex-direction:column;gap:8px"><span style="font:500 14px/1 Figtree,sans-serif;color:#1D2B48">Imię i nazwisko</span><input name="name" value="{{ f.name }}" onChange="{{ fSet }}" autocomplete="name" style="height:54px;box-sizing:border-box;padding:0 18px;border:0;outline:0;border-radius:0 14px 0 14px;background:#fff;box-shadow:{{ fe.name }};font:500 16px/1 Figtree,sans-serif;color:#0E1A33" style-focus="box-shadow:inset 0 0 0 2px #2A86DB"><sc-if value="{{ fm.name }}" hint-placeholder-val="{{ false }}"><span style="font:500 13px/1.3 Figtree,sans-serif;color:#C0392B">Podaj imię i nazwisko</span></sc-if></label>
+<label style="display:flex;flex-direction:column;gap:8px"><span style="font:500 14px/1 Figtree,sans-serif;color:#1D2B48">Telefon</span><input name="phone" type="tel" value="{{ f.phone }}" onChange="{{ fSet }}" autocomplete="tel" placeholder="np. 600 100 200" style="height:54px;box-sizing:border-box;padding:0 18px;border:0;outline:0;border-radius:0 14px 0 14px;background:#fff;box-shadow:{{ fe.phone }};font:500 16px/1 Figtree,sans-serif;color:#0E1A33;font-variant-numeric:tabular-nums" style-focus="box-shadow:inset 0 0 0 2px #2A86DB"><sc-if value="{{ fm.phone }}" hint-placeholder-val="{{ false }}"><span style="font:500 13px/1.3 Figtree,sans-serif;color:#C0392B">Podaj telefon lub e-mail</span></sc-if></label>
+</div>
+<label style="display:flex;flex-direction:column;gap:8px"><span style="font:500 14px/1 Figtree,sans-serif;color:#1D2B48">E-mail <span style="color:#6A7894;font-weight:400">(opcjonalnie)</span></span><input name="email" type="email" value="{{ f.email }}" onChange="{{ fSet }}" autocomplete="email" style="height:54px;box-sizing:border-box;padding:0 18px;border:0;outline:0;border-radius:0 14px 0 14px;background:#fff;box-shadow:{{ fe.email }};font:500 16px/1 Figtree,sans-serif;color:#0E1A33" style-focus="box-shadow:inset 0 0 0 2px #2A86DB"><sc-if value="{{ fm.email }}" hint-placeholder-val="{{ false }}"><span style="font:500 13px/1.3 Figtree,sans-serif;color:#C0392B">Sprawdź adres e-mail</span></sc-if></label>
+<label style="display:flex;flex-direction:column;gap:8px"><span style="font:500 14px/1 Figtree,sans-serif;color:#1D2B48">Wiadomość</span><textarea name="msg" value="{{ f.msg }}" onChange="{{ fSet }}" rows="5" placeholder="Opisz krótko, w czym możemy pomóc" style="box-sizing:border-box;padding:16px 18px;border:0;outline:0;resize:vertical;min-height:140px;border-radius:0 14px 0 14px;background:#fff;box-shadow:{{ fe.msg }};font:400 16px/1.5 Figtree,sans-serif;color:#0E1A33" style-focus="box-shadow:inset 0 0 0 2px #2A86DB"></textarea><sc-if value="{{ fm.msg }}" hint-placeholder-val="{{ false }}"><span style="font:500 13px/1.3 Figtree,sans-serif;color:#C0392B">Napisz kilka słów</span></sc-if></label>
+<label style="display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;align-items:start;cursor:pointer"><input name="ok" type="checkbox" checked="{{ f.ok }}" onChange="{{ fSet }}" style="width:20px;height:20px;margin:1px 0 0;accent-color:#2F4F96;cursor:pointer"><span style="font:400 14px/1.5 Figtree,sans-serif;color:{{ fOkColor }}">Wyrażam zgodę na przetwarzanie moich danych w celu odpowiedzi na wiadomość, zgodnie z <a href="#" style="color:#2F4F96;text-decoration:underline">polityką prywatności</a>.</span></label>
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:4px">
+<button type="submit" style="display:inline-flex;align-items:center;height:56px;padding:0 32px;border:0;border-radius:0 16px 0 16px;background:#2F4F96;color:#fff;font:600 16px/1 Figtree,sans-serif;cursor:pointer;transition:background-color .35s cubic-bezier(.22,1,.36,1),background .35s cubic-bezier(.22,1,.36,1),color .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1),border-color .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),filter .35s cubic-bezier(.22,1,.36,1),opacity .35s cubic-bezier(.22,1,.36,1)" style-hover="background:#24407D;color:#fff;transform:translateY(-1px);box-shadow:0 12px 28px -12px rgba(47,79,150,.55)">Wyślij wiadomość</button>
+</div>
+</form>
+</sc-if>
+</div>
+</div>
+</section>
+
+<footer data-screen-label="07 Stopka" style="max-width:1760px;margin:0 auto;padding:72px clamp(20px,5vw,96px) 40px;box-sizing:border-box;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:40px 64px">
+<div style="flex:1 1 320px;max-width:400px;display:flex;flex-direction:column;gap:20px">
+<img src="assets/kuracja-logo.png" alt="Kuracja" style="height:52px;width:auto;align-self:flex-start;display:block">
+<p style="margin:0;font:400 15px/1.6 Figtree,sans-serif;color:#4A5874;text-wrap:pretty">Przychodnia specjalistyczna i centrum fizjoterapii w Radzyniu Podlaskim. Umowa z Narodowym Funduszem Zdrowia.</p>
+</div>
+<nav style="display:flex;flex-direction:column;gap:14px;font:500 15px/1 Figtree,sans-serif;color:#1D2B48"><a href="#przychodnia">Przychodnia</a><a href="#fizjoterapia">Fizjoterapia</a><a href="#nfz">NFZ</a><a href="#rejestracja">Rejestracja</a><a href="#kontakt">Kontakt</a></nav>
+<div style="display:flex;flex-direction:column;gap:6px;font:400 15px/1.55 Figtree,sans-serif;color:#4A5874">
+<span style="font-weight:600;color:#0E1A33">KURACJA Sp. z o.o.</span>
+<span>ul. Warszawska 17, 21-300 Radzyń Podlaski</span>
+<span style="font-variant-numeric:tabular-nums">NIP 538-16-63-762 · REGON 030307590</span>
+</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;padding-top:24px;border-top:1px solid #DCE4EF;font:400 13px/1.5 Figtree,sans-serif;color:#6A7894">
+<span>© 2026 Kuracja24.pl</span>
+<span style="display:flex;flex-wrap:wrap;gap:8px 24px"><a href="#">Regulamin</a><a href="#">Polityka prywatności i cookies</a></span>
+<span>Zdjęcia poglądowe: J. Toltesi, M. Zeman, T. Heftiba, P. Madison / Unsplash</span>
+<span>Projekt i realizacja: <a href="#" style="color:#0E1A33;font-weight:600">Avenly</a></span>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;bgShader&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Tło hero&quot;},&quot;bgShaderSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.35,&quot;min&quot;:0,&quot;max&quot;:1,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tło hero&quot;}}">
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440, menuOpen: false, scrolled: false, ph: 0, phHold: false, box: null };
+  phRef = React.createRef();
+  photoList = [
+    ['1758063800058-473d9071937a', 'Reumatologia'], ['1758691461935-202e2ef6b69f', 'Alergologia'], ['1666887360361-d4e8487f0026', 'Okulistyka'],
+    ['1758691461990-03b49d969495', 'Endokrynologia'], ['1638202993928-7267aad84c31', 'Dermatologia'], ['1758691462878-6edc3d3da1be', 'Laryngologia'],
+    ['1758691462123-8a17ae95d203', 'Chirurgia naczyniowa'], ['1584516150909-c43483ee7932', 'Urologia'], ['1768507423533-b87b62769758', 'Neurologia']
+  ];
+  photoDesc = ['Choroby stawów, kręgosłupa i tkanki łącznej', 'Diagnostyka i leczenie alergii', 'Badanie wzroku i choroby oczu', 'Tarczyca, cukrzyca i zaburzenia hormonalne', 'Choroby skóry, włosów i paznokci', 'Ucho, nos, gardło i krtań', 'Żylaki i choroby naczyń krwionośnych', 'Układ moczowy i męski układ płciowy', 'Układ nerwowy, bóle głowy i kręgosłupa'];
+  labelW = this.photoList.map(([, n]) => Math.round(30 + n.length * 9.6));
+  measureLabels = () => {
+    try {
+      const c = document.createElement('canvas').getContext('2d');
+      c.font = '500 13px Figtree'; const nw = c.measureText('00').width;
+      c.font = '600 18px Figtree';
+      this.labelW = this.photoList.map(([, n]) => Math.ceil(28 + nw + 12 + c.measureText(n).width * 0.99 + 4));
+      this.forceUpdate();
+    } catch (e) {}
+  };
+  onResize = () => this.setState({ w: window.innerWidth });
+  componentDidMount() {
+    window.addEventListener('resize', this.onResize); this.onResize(); this.mountShader();
+    if (this.phRef.current && 'ResizeObserver' in window) {
+      this.ro = new ResizeObserver(([e]) => { const r = e.contentRect; this.setState({ box: [Math.round(r.width), Math.round(r.height)] }); });
+      this.ro.observe(this.phRef.current);
+    }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.measureLabels); else this.measureLabels();
+    this.phT = setInterval(() => { if (!this.state.phHold) this.setState(s => ({ ph: (s.ph + 1) % 9 })); }, 3600);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    if (this.heroRef.current && 'IntersectionObserver' in window) {
+      this.io = new IntersectionObserver(([e]) => this.setState({ onDark: e.isIntersecting }), { rootMargin: '-132px 0px 0px 0px', threshold: 0 });
+      this.io.observe(this.heroRef.current);
+    }
+    requestAnimationFrame(() => this.onScroll());
+  }
+  componentWillUnmount() { clearInterval(this.phT); this.ro?.disconnect(); window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onScroll); this.io?.disconnect(); this.shader?.dispose?.(); }
+  bgRef = React.createRef();
+  heroRef = React.createRef();
+  onScroll = () => {
+    const el = this.heroRef.current; if (!el) return;
+    const onDark = el.getBoundingClientRect().bottom > 132 || window.scrollY < 40;
+    const scrolled = window.scrollY > 24;
+    const y = window.scrollY, d = y - (this.lastY ?? y);
+    this.lastY = y;
+    let navHidden = this.state.navHidden || false;
+    if (y < 120) navHidden = false;
+    else if (d > 6) navHidden = true;
+    else if (d < -6) navHidden = false;
+    if (navHidden !== this.state.navHidden) this.setState({ navHidden });
+    if (onDark !== this.state.onDark || scrolled !== this.state.scrolled) this.setState({ onDark, scrolled });
+  };
+  async mountShader() {
+    if (this.shader || !this.bgRef.current || !(this.props.bgShader ?? true)) return;
+    try {
+      const P = await import('https://esm.sh/@paper-design/shaders');
+      if (this.shader || !this.bgRef.current) return;
+      const cols = ['#0B1630', '#2F4F96', '#0B1630', '#2A86DB', '#0E1A33', '#5AB0F4'].map(c => P.getShaderColorFromString(c));
+      const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      this.shader = new P.ShaderMount(this.bgRef.current, P.meshGradientFragmentShader, {
+        u_colors: cols, u_colorsCount: cols.length, u_distortion: 0.9, u_swirl: 0.6, u_grainMixer: 0.15, u_grainOverlay: 0.12,
+        u_fit: 2, u_scale: 1.2, u_rotation: 0, u_offsetX: -0.2, u_offsetY: 0, u_originX: 0.5, u_originY: 0.5, u_worldWidth: 0, u_worldHeight: 0
+      }, { antialias: false }, still ? 0 : (this.props.bgShaderSpeed ?? 0.35), 0, 1);
+      this.setState({ bgReady: true });
+    } catch (e) { console.warn('shader', e); }
+  }
+  componentDidUpdate(pp) {
+    const on = this.props.bgShader ?? true;
+    if (on && !this.shader) this.mountShader();
+    if (!on && this.shader) { this.shader.dispose?.(); this.shader = null; if (this.bgRef.current) this.bgRef.current.innerHTML = ''; this.setState({ bgReady: false }); }
+    if (this.shader && pp.bgShaderSpeed !== this.props.bgShaderSpeed) this.shader.setSpeed?.(this.props.bgShaderSpeed ?? 0.35);
+  }
+  formVals() {
+    const f = this.state.f || { topic: 'Wizyta', name: '', phone: '', email: '', msg: '', ok: false };
+    const err = this.state.fErr || {};
+    const ring = k => err[k] ? 'inset 0 0 0 1.5px #C0392B' : 'inset 0 0 0 1px #DCE4EF';
+    const setF = patch => this.setState(s => ({ f: { ...(s.f || f), ...patch }, fErr: s.fTried ? this.validate({ ...(s.f || f), ...patch }) : {} }));
+    return {
+      f, fSent: !!this.state.fSent, fOpen: !this.state.fSent,
+      fe: { name: ring('name'), phone: ring('phone'), email: ring('email'), msg: ring('msg') },
+      fm: { name: !!err.name, phone: !!err.phone, email: !!err.email, msg: !!err.msg },
+      fOkColor: err.ok ? '#C0392B' : '#4A5874',
+      fTopics: ['Wizyta', 'Fizjoterapia', 'NFZ', 'Inne'].map(t => ({ label: t, on: f.topic === t, pick: () => setF({ topic: t }), bg: f.topic === t ? '#2F4F96' : '#fff', fg: f.topic === t ? '#fff' : '#2F4F96', ring: f.topic === t ? 'none' : 'inset 0 0 0 1px #C9D6EA' })),
+      fSet: e => { const t = e.target; setF({ [t.name]: t.type === 'checkbox' ? t.checked : t.value }); },
+      fSubmit: e => { e.preventDefault(); const er = this.validate(f); if (Object.keys(er).length) this.setState({ fErr: er, fTried: true }); else this.setState({ fSent: true, fErr: {}, fTried: false }); },
+      fReset: () => this.setState({ fSent: false, f: null, fErr: {}, fTried: false })
+    };
+  }
+  validate(f) {
+    const e = {};
+    if (f.name.trim().length < 3) e.name = 1;
+    if (!f.phone.replace(/\D/g, '').match(/^\d{9,11}$/) && !f.email.trim()) e.phone = 1;
+    if (f.email.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.trim())) e.email = 1;
+    if (f.msg.trim().length < 5) e.msg = 1;
+    if (!f.ok) e.ok = 1;
+    return e;
+  }
+  photoVals() {
+    const ph = this.state.ph, hold = this.state.phHold;
+    const NH = 64, r = 22;
+    const nw = this.labelW[ph];
+    let phClip = 'none', phRadius = '0 140px 0 140px';
+    if (false) {
+      const [w, H] = this.state.box, R = Math.min(140, Math.round(H * 0.24)), x0 = w - nw;
+      const y0 = H - NH;
+      phClip = `path('M0 0 L${w - R} 0 A${R} ${R} 0 0 1 ${w} ${R} L${w} ${y0 - r} A${r} ${r} 0 0 1 ${w - r} ${y0} L${x0 + r} ${y0} A${r} ${r} 0 0 0 ${x0} ${y0 + r} L${x0} ${H - r} A${r} ${r} 0 0 1 ${x0 - r} ${H} L${R} ${H} A${R} ${R} 0 0 1 0 ${H - R} Z')`;
+      phRadius = '0';
+    }
+    return {
+      phRef: this.phRef, phClip, phRadius, phNh: NH, phNw: nw, phRy: -NH * ph,
+      photos: this.photoList.map(([id, n], i) => ({ src: `https://images.unsplash.com/photo-${id}?w=1400&q=80&auto=format&fit=crop`, alt: n + ' (zdjęcie poglądowe)', op: i === ph ? 1 : 0, sc: i === ph ? 1 : 1.06 })),
+      phLabels: this.photoList.map(([, n], i) => ({ num: String(i + 1).padStart(2, '0'), name: n, desc: this.photoDesc[i], op: i === ph ? 1 : 0, ty: i === ph ? 0 : (i === (ph + 8) % 9 ? -18 : 18) })),
+      phHold: () => this.setState({ phHold: true }), phFree: () => this.setState({ phHold: false }),
+      bars: this.photoList.map(([, n], i) => ({ label: n, pick: () => this.setState({ ph: i }), w: i <= ph ? '100%' : '0%', tr: i === ph && !hold ? 'width 3.6s linear' : 'width .3s ease' }))
+    };
+  }
+  renderVals() {
+    const w = this.state.w;
+    const wide = w >= 1100;
+    return {
+      ...this.formVals(),
+      ...this.photoVals(),
+      wide, compact: !wide, bgRef: this.bgRef, heroRef: this.heroRef, bgOpacity: this.state.bgReady ? 1 : 0,
+      h: (() => {
+        const dark = (this.state.onDark ?? true) && !this.state.menuOpen;
+        const glass = this.state.scrolled || this.state.menuOpen;
+        const blur = glass ? 'blur(22px) saturate(170%)' : 'none';
+        const ty = this.state.navHidden && !this.state.menuOpen ? '-100%' : '0';
+        return dark
+          ? { ty, hover: '#8CCBFA', btnHover: '#DCEBFA', ul: '#fff', bg: glass ? 'rgba(11,22,48,.18)' : 'rgba(11,22,48,0)', blur, line: glass ? 'inset 0 -1px 0 rgba(255,255,255,.08)' : 'inset 0 -1px 0 rgba(255,255,255,0)', logo: 'brightness(0) invert(1)', nav: 'rgba(255,255,255,.86)', ink: '#fff', btnBg: '#fff', btnFg: '#0B1630', burgerBg: 'rgba(255,255,255,.12)' }
+          : { ty, hover: '#2A86DB', btnHover: '#24407D', ul: '#0E1A33', bg: glass ? 'rgba(246,248,251,.38)' : 'rgba(246,248,251,0)', blur, line: glass ? 'inset 0 -1px 0 rgba(14,26,51,.07)' : 'inset 0 -1px 0 rgba(14,26,51,0)', logo: 'none', nav: '#1D2B48', ink: '#0E1A33', btnBg: '#2F4F96', btnFg: '#fff', burgerBg: '#E4ECF7' };
+      })(),
+      showPhone: w >= 1240 || (!wide && w >= 640),
+      menuOpen: this.state.menuOpen,
+      menuVisible: !wide && this.state.menuOpen,
+      toggleMenu: () => this.setState(st => ({ menuOpen: !st.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+:root {
+  --navy-900: #0b1630;
+  --navy-850: #13213f;
+  --ink: #0e1a33;
+  --ink-2: #1d2b48;
+  --brand: #2f4f96;
+  --brand-hover: #24407d;
+  --blue-600: #2a86db;
+  --blue-400: #5ab0f4;
+  --blue-200: #8ccbfa;
+  --blue-150: #b9d9f5;
+  --blue-100: #dcebfa;
+  --muted-on-dark: #b4c2da;
+  --text-2: #4a5874;
+  --text-3: #6a7894;
+  --line: #dce4ef;
+  --line-2: #c9d6ea;
+  --tint: #e4ecf7;
+  --surface-2: #f6f8fb;
+  --page: #ebf1f8;
+  --error: #c0392b;
+
+  --brand-gradient: linear-gradient(150deg, var(--blue-400), var(--blue-600) 46%, var(--brand));
+  --white-section: linear-gradient(180deg, var(--page) 0, #fff 140px, #fff calc(100% - 140px), var(--page) 100%);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --header-h: 88px;
+  --gutter: clamp(20px, 5vw, 96px);
+  --section-y: clamp(80px, 9vw, 128px);
+  --section-y-lg: clamp(96px, 11vw, 160px);
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color 0.35s var(--ease),
+    opacity 0.35s var(--ease);
+}
+
+a:hover {
+  color: var(--blue-600);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue-600);
+  outline-offset: 3px;
+}
+
+.container {
+  max-width: 1760px;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Typografia */
+
+.eyebrow {
+  font: 500 15px/1.4 var(--font-sans);
+  color: var(--text-2);
+}
+
+.eyebrow--dark {
+  color: var(--blue-200);
+}
+
+.h2 {
+  font: 500 clamp(40px, 4.2vw, 60px) / 1 var(--font-sans);
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.lead {
+  font: 400 17px/1.6 var(--font-sans);
+  color: var(--text-2);
+}
+
+/* Przyciski – kształt "liścia" z logo: zaokrąglone tylko dwa przeciwległe rogi */
+
+.btn {
+  --leaf: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 26px;
+  border: 0;
+  border-radius: 0 var(--leaf) 0 var(--leaf);
+  font: 600 15px/1 var(--font-sans);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.35s var(--ease),
+    color 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    transform 0.35s var(--ease),
+    opacity 0.35s var(--ease);
+}
+
+.btn--lg {
+  height: 56px;
+  padding: 0 30px;
+  font-size: 16px;
+}
+
+.btn--sm {
+  --leaf: 14px;
+  height: 48px;
+  padding: 0 22px;
+}
+
+.btn--primary {
+  background: var(--brand);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: var(--brand-hover);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -12px rgba(47, 79, 150, 0.55);
+}
+
+.btn--white {
+  background: #fff;
+  color: var(--navy-900);
+}
+
+.btn--white:hover {
+  background: var(--tint);
+  color: var(--navy-900);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.45);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--brand);
+  box-shadow: inset 0 0 0 1.5px var(--brand);
+}
+
+.btn--outline:hover {
+  background: var(--brand);
+  color: #fff;
+}
+
+.btn:disabled {
+  cursor: progress;
+  opacity: 0.7;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Podkreślony link na ciemnym tle */
+.link-dark {
+  padding-bottom: 5px;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.5);
+  font: 600 16px/1 var(--font-sans);
+  color: #fff;
+  transition:
+    color 0.35s var(--ease),
+    border-color 0.35s var(--ease);
+}
+
+.link-dark:hover {
+  color: var(--blue-200);
+  border-color: var(--blue-200);
+}
+
+/* Biała sekcja, która płynnie przechodzi w tło strony */
+.section-white {
+  background: var(--white-section);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

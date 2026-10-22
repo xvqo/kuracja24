@@ -1,0 +1,117 @@
+.inner {
+  padding-block: var(--section-y);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 56px clamp(40px, 6vw, 96px);
+}
+
+.info {
+  flex: 1 1 360px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.details {
+  margin: 16px 0 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+
+.detail dt {
+  font: 400 15px/1.5 var(--font-sans);
+  color: var(--text-3);
+}
+
+.detail dd {
+  margin: 0;
+  font: 500 16px/1.5 var(--font-sans);
+  color: var(--ink);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.map {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 260px;
+  height: clamp(260px, 22vw, 340px);
+  margin-top: 12px;
+  border-radius: 0 72px 0 72px;
+  overflow: hidden;
+  background: var(--tint);
+  box-shadow: inset 0 0 0 1px var(--tint);
+}
+
+/* Iframe przesunięty o 60px w górę, żeby schować górny pasek Google Maps */
+.map iframe {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 60px);
+  border: 0;
+  filter: grayscale(1) contrast(1.05) brightness(1.03);
+}
+
+.mapShade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(246, 248, 251, 0) 60%, rgba(246, 248, 251, 0.55) 100%);
+  mix-blend-mode: multiply;
+}
+
+.mapPill {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 0 14px 0 14px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 30px -12px rgba(14, 26, 51, 0.35);
+  backdrop-filter: blur(10px);
+  font: 600 14px/1 var(--font-sans);
+  color: var(--ink);
+  transition:
+    background-color 0.35s var(--ease),
+    color 0.35s var(--ease);
+}
+
+.mapPill:hover {
+  background: #fff;
+  color: var(--brand);
+}
+
+.mapMarker {
+  width: 12px;
+  height: 12px;
+  border-radius: 0 4px 0 4px;
+  background: var(--brand-gradient);
+}
+
+.formCard {
+  flex: 1.4 1 480px;
+  min-width: 0;
+  padding: clamp(28px, 4vw, 56px);
+  border-radius: 0 96px 0 96px;
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px var(--tint);
+}
