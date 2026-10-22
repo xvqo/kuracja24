@@ -9,7 +9,8 @@
 
 .frame {
   position: relative;
-  height: clamp(440px, 44vw, 640px);
+  /* Rośnie z szerokością, ale nie więcej, niż zmieści się w oknie (300px = header, paski, odstępy) */
+  height: clamp(440px, min(44vw, 100svh - 300px), 860px);
 }
 
 .photos {

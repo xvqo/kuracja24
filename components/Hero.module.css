@@ -7,9 +7,24 @@
   border-bottom-left-radius: clamp(80px, 10vw, 180px);
   overflow: hidden;
   color: #fff;
+  /* Pełna wysokość okna – hero zaczyna się pod headerem (margin-top: -88px), więc 100svh to cały ekran */
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Na dużych ekranach (FHD, 2K) hero kończy się prostą krawędzią */
+@media (min-width: 1800px) {
+  .hero {
+    border-bottom-left-radius: 0;
+  }
 }
 
 .inner {
+  flex: 1;
+  width: 100%;
+  align-content: center;
   padding-top: 24px;
   display: flex;
   flex-wrap: wrap;

@@ -14,7 +14,9 @@ export function SmoothScroll() {
     const lenis = new Lenis({
       autoRaf: true,
       anchors: true,
-      lerp: 0.1,
+      // Wyraźny, "szybujący" scroll: 1,2 s z wygaszaniem expo
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       stopInertiaOnNavigate: true,
     });
 
