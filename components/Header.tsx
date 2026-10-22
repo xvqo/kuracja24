@@ -74,6 +74,7 @@ export function Header() {
   return (
     <header
       className={styles.header}
+      data-reveal=""
       data-theme={theme}
       data-glass={glass}
       data-hidden={hidden && !menuOpen}

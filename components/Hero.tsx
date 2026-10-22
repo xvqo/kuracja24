@@ -1,15 +1,15 @@
 import { PHONE, PHONE_HREF } from '@/lib/content';
-import { HeroShader } from './HeroShader';
+import { MeshShader } from './MeshShader';
 import { HeroCarousel } from './HeroCarousel';
 import styles from './Hero.module.css';
 
 export function Hero() {
   return (
     <div id="start" className={styles.hero} data-header-theme="dark">
-      <HeroShader />
+      <MeshShader revealKey="hero-shader" />
 
       <section className={`container ${styles.inner}`} aria-labelledby="hero-title">
-        <div className={styles.copy}>
+        <div className={styles.copy} data-reveal="up">
           <p className="eyebrow eyebrow--dark">Przychodnia specjalistyczna i centrum fizjoterapii</p>
           <h1 id="hero-title" className={styles.title}>
             Stawiamy

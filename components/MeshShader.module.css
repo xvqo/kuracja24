@@ -1,0 +1,15 @@
+.shader {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.shader[data-own-fade] {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.shader[data-own-fade][data-ready='true'] {
+  opacity: 1;
+}

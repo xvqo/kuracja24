@@ -1,10 +1,12 @@
 import { PAGES, PHONE_HREF, REGISTRATION_STEPS } from '@/lib/content';
+import { MeshShader } from './MeshShader';
 import styles from './Nfz.module.css';
 
 export function Nfz() {
   return (
     <section id="nfz" className={`container ${styles.section}`} aria-labelledby="nfz-title">
       <div className={styles.card} data-header-theme="dark">
+        <MeshShader offsetX={0.35} />
         <div className={styles.intro}>
           <p className="eyebrow eyebrow--dark">Narodowy Fundusz Zdrowia</p>
           <h2 id="nfz-title" className={styles.title}>

@@ -30,6 +30,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     // suppressHydrationWarning: rozszerzenia (np. LanguageTool) dopisują atrybuty do <html> przed hydratacją
     <html lang="pl" className={figtree.variable} suppressHydrationWarning>
       <body>
+        <noscript>
+          <style>{'[data-reveal] { opacity: 1 !important; }'}</style>
+        </noscript>
         <SmoothScroll />
         {children}
       </body>

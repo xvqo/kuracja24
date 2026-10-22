@@ -3,6 +3,9 @@
 }
 
 .card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: flex;
   flex-wrap: wrap;
   gap: 64px clamp(40px, 7vw, 120px);

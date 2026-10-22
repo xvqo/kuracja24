@@ -3,10 +3,11 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { CLINICS } from '@/lib/content';
+import { releaseReveal } from '@/lib/reveal';
 import styles from './HeroCarousel.module.css';
 
 const count = CLINICS.length;
-const pad = (n: number) => String(n).padStart(2, '0');
+const releasePhoto = () => releaseReveal('hero-photo');
 
 /**
  * Zdjęcia poradni zmieniają się co 3,6 s. Tempo wyznacza animacja wypełnienia
@@ -30,7 +31,7 @@ export function HeroCarousel() {
   const prev = (active + count - 1) % count;
 
   return (
-    <div className={styles.carousel}>
+    <div className={styles.carousel} data-reveal="up">
       <div className={styles.frame} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
         <div className={styles.photos}>
           {CLINICS.map((clinic, i) => (
@@ -41,6 +42,8 @@ export function HeroCarousel() {
               fill
               sizes="(min-width: 1100px) 50vw, 100vw"
               priority={i === 0}
+              onLoad={i === 0 ? releasePhoto : undefined}
+              onError={i === 0 ? releasePhoto : undefined}
               className={styles.photo}
               data-active={i === active}
             />
@@ -56,9 +59,6 @@ export function HeroCarousel() {
               data-state={i === active ? 'active' : i === prev ? 'prev' : 'next'}
               aria-hidden={i !== active}
             >
-              <span className={`${styles.counter} tabular`}>
-                {pad(i + 1)} / {pad(count)}
-              </span>
               <span className={styles.name}>{clinic.name}</span>
               <span className={styles.description}>{clinic.description}</span>
             </div>
