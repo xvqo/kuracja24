@@ -9,8 +9,8 @@
 
 .frame {
   position: relative;
-  /* Rośnie z szerokością, ale nie więcej, niż zmieści się w oknie (300px = header, paski, odstępy) */
-  height: clamp(440px, min(44vw, 100svh - 300px), 860px);
+  /* Rośnie z szerokością, ale nie więcej, niż zmieści się w hero (300px = header, paski, odstępy) */
+  height: clamp(440px, min(44vw, 100svh - 300px - var(--hero-peek, 0px)), 860px);
 }
 
 .photos {
@@ -154,5 +154,29 @@
 
   .photo {
     transform: none;
+  }
+}
+
+/* 2K i większe: szersze, wyższe zdjęcie i większy podpis */
+@media (min-width: 1800px) {
+  .carousel {
+    flex-basis: clamp(860px, 45vw, 1200px);
+  }
+
+  .frame {
+    height: clamp(440px, min(44vw, 100svh - 300px - var(--hero-peek, 0px)), 1000px);
+  }
+
+  .captions {
+    width: min(clamp(380px, 20vw, 520px), calc(100% - 180px));
+    height: clamp(120px, 6.25vw, 160px);
+  }
+
+  .name {
+    font-size: clamp(42px, 2.2vw, 56px);
+  }
+
+  .description {
+    font-size: clamp(16px, 0.84vw, 21px);
   }
 }

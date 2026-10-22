@@ -46,7 +46,8 @@
 
 .map {
   position: relative;
-  flex: 1 1 auto;
+  /* Stała wysokość – nie rośnie, gdy formularz obok się wydłuża (np. powiększona textarea) */
+  flex: none;
   min-height: 260px;
   height: clamp(260px, 22vw, 340px);
   margin-top: 12px;

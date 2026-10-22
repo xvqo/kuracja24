@@ -220,3 +220,21 @@
     display: inline;
   }
 }
+
+/* 2K i większe: header rośnie razem z hero */
+@media (min-width: 1800px) {
+  .logo img {
+    height: clamp(44px, 2.3vw, 56px);
+  }
+
+  .navLink,
+  .phone {
+    font-size: clamp(15px, 0.78vw, 19px);
+  }
+
+  .cta {
+    height: clamp(44px, 2.3vw, 54px);
+    padding: 0 clamp(22px, 1.15vw, 28px);
+    font-size: clamp(15px, 0.78vw, 19px);
+  }
+}

@@ -91,7 +91,8 @@ textarea {
 }
 
 .container {
-  max-width: 1760px;
+  /* Do FHD 1760px, na większych ekranach (2K) rośnie razem z oknem */
+  max-width: max(1760px, 86vw);
   margin: 0 auto;
   padding-inline: var(--gutter);
 }

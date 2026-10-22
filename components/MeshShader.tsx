@@ -44,8 +44,8 @@ export function MeshShader({ offsetX = -0.2, revealKey }: Props) {
             u_colorsCount: colors.length,
             u_distortion: 0.9,
             u_swirl: 0.6,
-            u_grainMixer: 0,
-            u_grainOverlay: 0,
+            u_grainMixer: 0.04,
+            u_grainOverlay: 0.03,
             u_fit: 2, // cover
             u_scale: 1.2,
             u_rotation: 0,

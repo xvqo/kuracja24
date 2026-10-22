@@ -7,18 +7,13 @@
   border-bottom-left-radius: clamp(80px, 10vw, 180px);
   overflow: hidden;
   color: #fff;
-  /* Pełna wysokość okna – hero zaczyna się pod headerem (margin-top: -88px), więc 100svh to cały ekran */
-  min-height: 100vh;
-  min-height: 100svh;
+  /* Prawie cały ekran – na dole zostaje pasek tła następnej sekcji, żeby było widać zaokrąglony róg.
+     Hero zaczyna się pod headerem (margin-top: -88px), więc 100svh liczy się od samej góry okna. */
+  --hero-peek: clamp(64px, 8svh, 120px);
+  min-height: calc(100vh - var(--hero-peek));
+  min-height: calc(100svh - var(--hero-peek));
   display: flex;
   flex-direction: column;
-}
-
-/* Na dużych ekranach (FHD, 2K) hero kończy się prostą krawędzią */
-@media (min-width: 1800px) {
-  .hero {
-    border-bottom-left-radius: 0;
-  }
 }
 
 .inner {
@@ -49,7 +44,7 @@
 }
 
 .lead {
-  max-width: 430px;
+  max-width: 24em;
   font: 400 18px/1.55 var(--font-sans);
   color: var(--muted-on-dark);
 }
@@ -81,4 +76,39 @@
 
 .phone:hover .phoneNumber {
   color: var(--blue-200);
+}
+
+/* 2K i większe: typografia i przyciski rosną płynnie od rozmiarów z FHD (przy 1920px wartości są te same) */
+@media (min-width: 1800px) {
+  .copy {
+    max-width: clamp(620px, 32vw, 900px);
+    gap: clamp(28px, 1.46vw, 38px);
+  }
+
+  .copy :global(.eyebrow) {
+    font-size: clamp(15px, 0.78vw, 20px);
+  }
+
+  .title {
+    font-size: clamp(88px, 4.6vw, 132px);
+  }
+
+  .lead {
+    font-size: clamp(18px, 0.94vw, 24px);
+  }
+
+  .actions :global(.btn--lg) {
+    --leaf: clamp(16px, 0.84vw, 21px);
+    height: clamp(56px, 2.92vw, 72px);
+    padding: 0 clamp(30px, 1.56vw, 40px);
+    font-size: clamp(16px, 0.84vw, 21px);
+  }
+
+  .phoneHint {
+    font-size: clamp(13px, 0.68vw, 17px);
+  }
+
+  .phoneNumber {
+    font-size: clamp(17px, 0.89vw, 22px);
+  }
 }
